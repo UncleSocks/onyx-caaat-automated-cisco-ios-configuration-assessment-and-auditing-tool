@@ -53,10 +53,17 @@ def user_input():
         
         logo()
         
-        ip_address = input("Target > ")
-        username = input("Username > ")
-        password = askpass("Password > ")
-        enable_password = askpass("Enable # ")
+        if (ip_address := os.environ.get("CAAAT_TARGET")) is None:
+            ip_address = input("Target > ")
+
+        if (username := os.environ.get("CAAAT_USERNAME")) is None:
+            username = input("Username > ")
+
+        if (password := os.environ.get("CAAAT_PASSWORD")) is None:
+            password = askpass("Password > ")
+
+        if (enable_password := os.environ.get("CAAAT_ENABLE_PASSWORD")) is None:
+            enable_password = askpass("Enable # ")
 
         target_info = {'IP Address':ip_address, 'Username':username, 
                     'Password':password, 'Enable Password':enable_password}
